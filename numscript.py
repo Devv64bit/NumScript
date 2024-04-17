@@ -154,7 +154,7 @@ if __name__ == '__main__':
     print("{ - Numscript Language Version 1.0 (input exit to stop running all operations) - }")
     while True:
         try:
-            text = input('MathPal> ')
+            text = input('Numscript> ')
             if text.lower() == 'exit':
                 break
         except EOFError:
