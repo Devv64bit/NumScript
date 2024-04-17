@@ -140,30 +140,54 @@ class Parser:
         return self._expr()
 
 
-class Interpreter:
+class SemanticAnalyzer:
+    def __init__(self, ast):
+        self.ast = ast
 
+    def analyze(self):
+        # Perform semantic analysis on the AST
+        # Check for type errors, undeclared variables, etc.
+        # For simplicity, we'll assumed the expressions are valid
+        return self.ast
+
+
+class CodeGenerator:
+    def __init__(self, ast):
+        self.ast = ast
+
+    def generate(self):
+        # Generate bytecode or machine code from the AST
+        # For simplicity, we'll just print the AST
+        print(f"Generated code: {self.ast}")
+
+
+class Compiler:
     def __init__(self, text):
-        self.lexer = Lexer(text)
-        self.parser = Parser(self.lexer)
+        self.text = text
 
-    def interpret(self):
-        return self.parser.parse()
+    def compile(self):
+        lexer = Lexer(self.text)
+        parser = Parser(lexer)
+        ast = parser.parse()
+        semantic_analyzer = SemanticAnalyzer(ast)
+        analyzed_ast = semantic_analyzer.analyze()
+        code_generator = CodeGenerator(analyzed_ast)
+        code_generator.generate()
 
 
 if __name__ == '__main__':
-    print("{ - Numscript Language Version 1.0 (input exit to stop running all operations) - }")
+    print("{ - Numscript Language Version 1.0 (input 'exit' to stop running all operations) - }")
     while True:
         try:
-            text = input('Numscript> ')
-            if text.lower() == 'exit':
+            source_code = input('Numscript> ')
+            if source_code.lower() == 'exit':
                 break
         except EOFError:
             break
-        if not text:
+        if not source_code:
             continue
         try:
-            interpreter = Interpreter(text)
-            result = interpreter.interpret()
-            print(result)
+            compiler = Compiler(source_code)
+            compiler.compile()
         except Exception as e:
             print(f'Error: {e}')
