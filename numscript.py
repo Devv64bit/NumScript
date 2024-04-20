@@ -1,5 +1,5 @@
 # Language Name: NumScript (Version 1)
-# Base language (starting language): Python 3.11.6
+# Base language (starting language): Python 0.7.1
 
 class Token:
     def __init__(self, token_type, value=None):
@@ -8,7 +8,6 @@ class Token:
 
     def __repr__(self):
         return f'Token({self.type}, {self.value})'
-
 
 class Lexer:
     def __init__(self, text):
@@ -24,6 +23,9 @@ class Lexer:
 
     def get_next_token(self):
         current_char = self._get_next_char()
+        if current_char is None:
+            return Token('EOF')
+
         while current_char is not None:
             if current_char.isdigit():
                 value = current_char
@@ -53,8 +55,9 @@ class Lexer:
             elif current_char == ' ':
                 current_char = self._get_next_char()
             else:
-                return Token('INVALID', current_char)
+                raise Exception(f'Invalid character: {current_char}')  # Raise exception for invalid character
         return Token('EOF')
+
 
 
 class Parser:
@@ -157,8 +160,8 @@ class CodeGenerator:
 
     def generate(self):
         # Generate bytecode or machine code from the AST
-        # For simplicity, we'll just print the AST
-        print(f"Generated code: {self.ast}")
+        # For simplicity, we'll just return the AST as a string
+        return f"Generated code: {self.ast}"
 
 
 class Compiler:
@@ -172,7 +175,7 @@ class Compiler:
         semantic_analyzer = SemanticAnalyzer(ast)
         analyzed_ast = semantic_analyzer.analyze()
         code_generator = CodeGenerator(analyzed_ast)
-        code_generator.generate()
+        return code_generator.generate()
 
 
 if __name__ == '__main__':
@@ -188,6 +191,7 @@ if __name__ == '__main__':
             continue
         try:
             compiler = Compiler(source_code)
-            compiler.compile()
+            result = compiler.compile()
+            print(result)
         except Exception as e:
             print(f'Error: {e}')
