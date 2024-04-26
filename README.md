@@ -1,3 +1,5 @@
+## Class Name: Compiler Construction CMPSC 470 Section 002
+
 # NumScript
 
 NumScript is a simple interpreter for a basic arithmetic expression language called NumScript Language Version 1.0. It allows users to input arithmetic expressions and generates corresponding code.
