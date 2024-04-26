@@ -1,5 +1,5 @@
 # Language Name: NumScript (Version 1)
-# Base language (starting language): Python 0.7.1
+# Base language (starting language): Python 3.12
 
 class Token:
     def __init__(self, token_type, value=None):
@@ -57,8 +57,6 @@ class Lexer:
             else:
                 raise Exception(f'Invalid character: {current_char}')  # Raise exception for invalid character
         return Token('EOF')
-
-
 
 class Parser:
     def __init__(self, lexer):
@@ -142,7 +140,6 @@ class Parser:
     def parse(self):
         return self._expr()
 
-
 class SemanticAnalyzer:
     def __init__(self, ast):
         self.ast = ast
@@ -153,7 +150,6 @@ class SemanticAnalyzer:
         # For simplicity, we'll assumed the expressions are valid
         return self.ast
 
-
 class CodeGenerator:
     def __init__(self, ast):
         self.ast = ast
@@ -162,7 +158,6 @@ class CodeGenerator:
         # Generate bytecode or machine code from the AST
         # For simplicity, we'll just return the AST as a string
         return f"Generated code: {self.ast}"
-
 
 class Compiler:
     def __init__(self, text):
