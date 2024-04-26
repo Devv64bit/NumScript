@@ -2,6 +2,12 @@
 
 NumScript is a simple interpreter for a basic arithmetic expression language called NumScript Language Version 1.0. It allows users to input arithmetic expressions and generates corresponding code.
 
+## Team Members
+- **Deep Patel:** Project Manager
+- **Darsh Patel:** Language Design/Architect
+- **Dev Patel:** Compiler Engineer
+- **Dravya Patel:** Quality Assurance/Testing, Documentation Specialist
+
 ## Usage
 
 To run NumScript, follow these steps:
@@ -28,10 +34,25 @@ To run NumScript, follow these steps:
 
 5. To exit the NumScript interpreter, type "exit" and press Enter.
 
-## Contributing
+## How It Works
 
-Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
+NumScript follows a multi-step process to interpret and generate code for arithmetic expressions:
 
-## License
+1. **Lexical Analysis:** The input code is broken down into tokens by the Lexer.
+2. **Parsing:** The Parser constructs a syntax tree to represent the structure of the code.
+3. **Semantic Analysis:** The Semantic Analyzer ensures the correctness of the code.
+4. **Code Generation:** The Code Generator translates the syntax tree into executable code.
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+## Sample Input and Output
+
+### Input:
+    2 + 3 * (4 - 1)
+
+### Output:
+    Generated code: 11
+
+
+## Contribution
+
+If you'd like to contribute to NumScript, feel free to fork the repository and submit a pull request. Contributions are welcome and appreciated!
+
